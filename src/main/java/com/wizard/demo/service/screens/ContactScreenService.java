@@ -13,7 +13,6 @@ public class ContactScreenService implements IWizardScreenService {
     @Override
     public <T extends BaseDTO> T getWizard(Long id) {
 
-        //id -> product table id or company id
         //get info from database  or get another microservice
 
         WizardScreenDTO wizardScreenDTO = new WizardScreenDTO();

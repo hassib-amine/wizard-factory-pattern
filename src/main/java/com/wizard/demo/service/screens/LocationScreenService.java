@@ -2,6 +2,7 @@ package com.wizard.demo.service.screens;
 
 import com.wizard.demo.dto.BaseDTO;
 
+import com.wizard.demo.dto.EtablishmentDTO;
 import com.wizard.demo.dto.LocationDTO;
 import com.wizard.demo.dto.WizardScreenDTO;
 import com.wizard.demo.enums.WizardScreenEnum;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class LocationScreenService implements IWizardScreenService {
     @Override
     public <T extends BaseDTO> T getWizard(Long id) {
+
         WizardScreenDTO wizardScreenDTO = new WizardScreenDTO();
         LocationDTO locationDTO = createLocationDTO(id);
         wizardScreenDTO.setLocationDTO(locationDTO);
@@ -22,9 +24,12 @@ public class LocationScreenService implements IWizardScreenService {
     public <T extends BaseDTO> T createModelWizard(WizardScreenDTO createWizardScreenDTO) {
 
         LocationDTO locationDTO = createWizardScreenDTO.getLocationDTO();
+        EtablishmentDTO etablishmentDTO = createWizardScreenDTO.getEtablishmentDTO();
+
         WizardScreenDTO wizardScreenDTO = new WizardScreenDTO();
         LocationDTO createdEtablishmentLocationDTO = saveLocationDTO(locationDTO);
         wizardScreenDTO.setLocationDTO(createdEtablishmentLocationDTO);
+        wizardScreenDTO.setEtablishmentDTO(etablishmentDTO);
 
         return (T) wizardScreenDTO;
     }
@@ -33,6 +38,7 @@ public class LocationScreenService implements IWizardScreenService {
     @Override
     public <T extends BaseDTO> T updateModelWizard(WizardScreenDTO updateddWizardScreenDTO) {
         LocationDTO locationDTO = updateddWizardScreenDTO.getLocationDTO();
+        EtablishmentDTO etablishmentDTO = updateddWizardScreenDTO.getEtablishmentDTO();
 
         //save database or send another service
 
@@ -40,6 +46,8 @@ public class LocationScreenService implements IWizardScreenService {
         LocationDTO updateLocationDTO = updateLocationDTO(locationDTO);
 
         wizardScreenDTO.setLocationDTO(updateLocationDTO);
+        wizardScreenDTO.setEtablishmentDTO(etablishmentDTO);
+
 
         return (T) wizardScreenDTO;
     }
@@ -66,7 +74,7 @@ public class LocationScreenService implements IWizardScreenService {
         createdDto.setAddress(locationDTO.getAddress());
         createdDto.setCity(locationDTO.getCity());
         createdDto.setCountry(locationDTO.getCountry());
-        createdDto.setState(locationDTO.getPostalCode());
+        createdDto.setState(locationDTO.getState());
         createdDto.setPostalCode(locationDTO.getPostalCode());
 
         return createdDto;
