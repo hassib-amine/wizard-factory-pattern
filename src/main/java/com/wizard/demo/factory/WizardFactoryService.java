@@ -30,9 +30,9 @@ public class WizardFactoryService {
     private void  createScreenWizard(Set<IWizardScreenService> IwizardScreenServiceSet){
         wizardScreens = new HashMap<>();
         IwizardScreenServiceSet.forEach(projectWizardService ->
-                wizardScreens.put(
-                        projectWizardService.getScreenName(),
-                        projectWizardService
+                wizardScreens.put
+                (
+                    projectWizardService.getScreenName(),projectWizardService
                 )
         );
     }
